@@ -12,6 +12,7 @@ The SPEDIX F405 is a flight controller based on the STM32F405 MCU.
 * 6x UARTs
 * 9x PWM Outputs (8 Motor Output, 1 LED)
 * Battery input voltage: 2S-6S
+* Dual Camera inputs
 * BEC 3.3V 0.5A
 * BEC 5V 3A
 * BEC 9V 3A for video
@@ -25,7 +26,7 @@ The SPEDIX F405 is a flight controller based on the STM32F405 MCU.
 * SERIAL0 -> USB
 * SERIAL1 -> UART1 (MSP DisplayPort, DMA-enabled)
 * SERIAL2 -> UART2 (Spare)
-* SERIAL3 -> UART3 (RX, DMA-enabled)
+* SERIAL3 -> UART3 (RCin, DMA-enabled)
 * SERIAL4 -> UART4 (VTX)
 * SERIAL5 -> UART5 (ESC Telemetry)
 * SERIAL6 -> UART6 (GPS)
@@ -38,23 +39,15 @@ Note: If the receiver is FPort the receiver must be tied to the USART2 TX pin , 
 and SERIAL2_OPTIONS must be set to 7 (invert TX/RX, half duplex). For full duplex like CRSF/ELRS use both
 RX2 and TX2 and set RSSI_TYPE also to 3.
 
-## FrSky Telemetry
- 
-FrSky Telemetry is supported using an unused UART, such as the T3 pin (UART3 transmit).
-You need to set the following parameters to enable support for FrSky S.PORT:
- 
-  - SERIAL3_PROTOCOL 10
-  - SERIAL3_OPTIONS 7
-
 ## OSD Support
 
-OSD is supported via the AT7456E chip connected to SPI2.
+Onboard OSD using OSD_TYPE 1 (MAX7456 driver) is supported by default. Simultaneously, DisplayPort OSD is available on the HD VTX connector.
 
 ## PWM Output
 
 The SPEDIX F405 supports up to 9 PWM outputs. The pads for motor output
 M1 to M8 are provided on both the motor connectors and on separate pads, plus
-M9 on a separate pad for LED strip or another PWM output.
+M9 on a separate pad for LED strip (default configuration) or another PWM output.
 
 The PWM is in 4 groups:
 
